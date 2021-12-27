@@ -9,20 +9,26 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user: Login = new Login();
+  user: Login = new Login("", "");
   hide = true;
-  errorMessage: string="";
+  errorMessage: string = "";
 
-  constructor(private auth:AuthService,
-              private route:Router) {
+  constructor(private auth: AuthService,
+              private route: Router) {
   }
 
   ngOnInit(): void {
   }
+
   login() {
     this.auth.login(this.user).subscribe(data => {
-      this.route.navigate(['/profile']);
+      if (data.token != undefined) {
+        this.auth.setToken(data.token)
+        this.auth.setName(data.name)
+      }
+      this.route.navigate(['/views']).then(() => {
+        window.location.reload();
+      })
     })
   }
-
 }

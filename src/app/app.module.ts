@@ -11,8 +11,21 @@ import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatIconModule} from "@angular/material/icon";
 import {HttpClientModule} from "@angular/common/http";
-import {MatFormFieldControl, MatFormFieldModule} from "@angular/material/form-field";
+import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import {ViewComponent} from './views/view/view.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
+import {AddProductComponent} from './views/add-product/add-product.component';
+import {EditProductComponent} from './views/edit-product/edit-product.component';
+import {SeachProductComponent} from './views/seach-product/seach-product.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {AngularFireModule} from "@angular/fire";
+import {AngularFireStorageModule} from "@angular/fire/storage";
+import {environment} from "../environments/environment.prod";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { UploadFileComponent } from './upload-file/upload-file.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +33,12 @@ import {MatInputModule} from "@angular/material/input";
     NavbarComponent,
     FooterComponent,
     LoginComponent,
-    RegesterComponent
+    RegesterComponent,
+    ViewComponent,
+    AddProductComponent,
+    EditProductComponent,
+    SeachProductComponent,
+    UploadFileComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +49,13 @@ import {MatInputModule} from "@angular/material/input";
     HttpClientModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCardModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSnackBarModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    MatProgressBarModule
 
   ],
   providers: [],

@@ -3,21 +3,31 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#"></a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" [routerLink]="['/login']" >Login</a>
+        <a *ngIf="isLogin" class="nav-link" href="#" [routerLink]="['/login']" >Login</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#" [routerLink]="['/register']">Register</a>
+        <a class="nav-link" href="#">Account <span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item">
+      </li><li class="nav-item">
+      <a class="nav-link" href="#">Menu <span class="sr-only">(current)</span></a>
+    </li><li class="nav-item">
+      <a class="nav-link" href="#">Navigate <span class="sr-only">(current)</span></a>
+    </li>
+
+
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+<!--    <form class="form-inline my-2 my-lg-0" (ngSubmit)="seachProduct()">-->
+<!--      <input class="form-control mr-sm-2" type="text" placeholder="Search" [(ngModel)]="name" name="name" id="name">-->
+<!--      <button class=" btn-outline-success " type="submit"><mat-icon>find_in_page</mat-icon></button>-->
+<!--    </form>-->
+
   </div>
 </nav>
+<!--<app-view [product]="product|async" [hidden]="product"></app-view>-->

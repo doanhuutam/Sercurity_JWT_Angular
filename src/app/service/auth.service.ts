@@ -5,6 +5,8 @@ import {JwtRespon} from "../model/jwt-respon";
 import {Regester} from "../model/regester";
 import {Login} from "../model/login";
 import {environment} from "../../environments/environment.prod";
+const TOKEN_KEY = 'Token_Key';
+const NAME_KEY = 'Name_Key';
 
 @Injectable({
   providedIn: 'root'
@@ -49,5 +51,19 @@ export class AuthService {
 
   getData() {
     return this.data;
+  }
+  public getToken(): any {
+    return window.sessionStorage.getItem(TOKEN_KEY);
+  }
+  public setToken(token: string){
+    window.sessionStorage.removeItem(TOKEN_KEY);
+    window.sessionStorage.setItem(TOKEN_KEY, token);
+  }
+  public getName(): any {
+    return window.sessionStorage.getItem(NAME_KEY);
+  }
+  public setName(name: string){
+    window.sessionStorage.removeItem(NAME_KEY);
+    window.sessionStorage.setItem(NAME_KEY, name);
   }
 }
