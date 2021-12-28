@@ -11,12 +11,12 @@
                 <h1 class="mt20">Thêm Sản Phẩm</h1>
               </div>
               <div class="row">
-                <div class="col-md-10 offset-md-1">
+                <div class="col-md-8 offset-md-1">
 
                   <form (ngSubmit)="submit()">
                     <!--tên sản phẩm -->
                     <mat-form-field class="w-100" appearance="fill">
-                      <mat-label>Tên Sản Phẩm</mat-label>
+                      <mat-label >Tên Sản Phẩm</mat-label>
                       <input
                         type="text"
                         name="name"
@@ -45,9 +45,10 @@
                         required>
                     </mat-form-field>
                   </form>
+                  <th>Hình Ảnh</th>
                   <app-upload-file (giveURLtoCreate)="uploadFile($event)"></app-upload-file>
                   <div class="container text-center">
-                    <button mat-raised-button (click)="submit()">Add</button>
+                    <button class="mt30" mat-raised-button (click)="submit()" >Add</button>
                   </div>
                 </div>
               </div>

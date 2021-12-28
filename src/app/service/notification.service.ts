@@ -1,6 +1,7 @@
 import {Component, Inject, Injectable} from '@angular/core';
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {NotiferDialogComponent} from "../notifer-dialog/notifer-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,9 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog
 export class NotificationService {
 
   constructor(private readonly snackBar: MatSnackBar,
-              ) {
+              private dialog: MatDialog) {
   }
+
   showNoficatiton() {
     this.snackBar.open('messenger send', 'x', {
       duration: 3000,
@@ -17,6 +19,10 @@ export class NotificationService {
       verticalPosition: "top"
     });
   }
+
+  openConfirm() {
+    let dialogg = this.dialog.open(NotiferDialogComponent);
+
 
 //   success(message: string) {
 //     this.openSnackBar(message, '', 'success-snackbar');
@@ -74,4 +80,5 @@ export class NotificationService {
 //   title: string;
 //
 // }
+  }
 }

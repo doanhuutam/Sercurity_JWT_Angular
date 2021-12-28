@@ -26,6 +26,9 @@ import {AngularFireStorageModule} from "@angular/fire/storage";
 import {environment} from "../environments/environment.prod";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { UploadFileComponent } from './upload-file/upload-file.component';
+import { NotiferDialogComponent } from './notifer-dialog/notifer-dialog.component';
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -39,6 +42,7 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
     EditProductComponent,
     SeachProductComponent,
     UploadFileComponent,
+    NotiferDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,9 +59,12 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
     MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDialogModule,
+    MatButtonModule
 
   ],
+  entryComponents:[NotiferDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

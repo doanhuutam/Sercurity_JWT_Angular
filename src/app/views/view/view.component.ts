@@ -7,6 +7,8 @@ import {MatTableDataSource} from "@angular/material/table";
 import {Router} from "@angular/router";
 import {NotificationService} from "../../service/notification.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {NotiferDialogComponent} from "../../notifer-dialog/notifer-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-view',
@@ -25,12 +27,15 @@ export class ViewComponent implements OnInit {
               private http: HttpClient,
               private route: Router,
               private notificationService: NotificationService,
-              private _snackBar: MatSnackBar) {
+              private _snackBar: MatSnackBar,
+              private dialog:MatDialog
+  ) {
   }
 
   ngOnInit(): void {
     this.getProduct();
   }
+
   //lấy danh sách sản phẩm
   getProduct() {
     this.http.get<Product[]>('http://localhost:8080/product/seach?name=').subscribe(data => {
@@ -39,6 +44,7 @@ export class ViewComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     })
   }
+
 // tìm kiếm sản phẩm theo tên
   getProduct1() {
     this.http.get<Product[]>('http://localhost:8080/product/seach?name=' + this.name).subscribe(data => {
@@ -47,33 +53,38 @@ export class ViewComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     })
   }
+
   //lấy id sản phẩm
   getIdProduct(id: any) {
     this.idProduct = id;
   }
+
   //chuyển hướng
   editProduct(id: number) {
     this.route.navigate(['edit', id])
   }
+
   //chuyển hướng
-  addProduct(){
+  addProduct() {
     this.route.navigate(['add'])
   }
+
   //xoá sản phẩm sử dụng thông báo notification
-  deleteProduct(id: number) {
-    if (
-      confirm('bạn có muốn xoá không')) {
-      this.http.delete(`http://localhost:8080/product/deleteProduct/${id}`).subscribe((data) => {
-        this.notificationService.showNoficatiton();
-        this.ngOnInit();
+  deleteProduct() {
+    this.http.delete(`http://localhost:8080/product/deleteProduct/${this.idProduct}`).subscribe((data) => {
+        // this.notificationService.showNoficatiton();
+        this.route.navigate(['views']).then(()=>{
+          window.location.reload();
+        });
       })
       this.ngOnInit();
     }
-  }
 
-  // seachProduct() {
-  //   this.service.seachProduct().subscribe(data =>
-  //     this.product = data
-  //   )
-  // }
 }
+
+
+// seachProduct() {
+//   this.service.seachProduct().subscribe(data =>
+//     this.product = data
+//   )
+// }
